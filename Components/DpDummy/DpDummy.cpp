@@ -30,7 +30,10 @@ void DpDummy ::SEND_DATA_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, U32 silly_d
 // ----------------------------------------------------------------------
 
 void DpDummy ::dpRecv_C1_handler(DpContainer& container, Fw::Success::T status) {
-    // TODO
+    // TODO 
+    // this->productRequest_out()
+    this->productRequestOut_out(0, container.getBaseId(), ); // this is the thing
+    
 }
 
 }  // namespace Components

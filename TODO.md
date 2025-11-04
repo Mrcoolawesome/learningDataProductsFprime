@@ -28,3 +28,7 @@ BIG TODOS:
 
  What I should do when I get back:
   - Hookup everything in the topology, and then figure out how the heck this is written in a producer component
+
+Next things to do:
+ - I kinda got an understanding of how to use `productRequestOut_out` and it's in the cpp file, i still need to figure some things out, but we need to continue writing stuff, (you should guess the names of the functions like productRequestOut and then build in the component folder and it'll suggest the right function probably). if we just do this for the rest of the stuff we should be fine.
+ - I'm not sure how it's gonna get the data (`silly_data`) from the send data command handler, so we need to get that figured out.
