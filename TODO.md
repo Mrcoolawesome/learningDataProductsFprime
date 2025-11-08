@@ -32,3 +32,10 @@ BIG TODOS:
 Next things to do:
  - I kinda got an understanding of how to use `productRequestOut_out` and it's in the cpp file, i still need to figure some things out, but we need to continue writing stuff, (you should guess the names of the functions like productRequestOut and then build in the component folder and it'll suggest the right function probably). if we just do this for the rest of the stuff we should be fine.
  - I'm not sure how it's gonna get the data (`silly_data`) from the send data command handler, so we need to get that figured out.
+
+What I learned today:
+ - I connected the topology a bit more not sure if it'll actually help. 
+ - The catelog component downlinks the things after running the create catelog command in the gds and then running the XMIT command to downlink.
+ - This isn't doing anything rn because things aren't linked properly ig.
+ - I got the requesting the data product container thing done I think, but now I actually need to send the data product using the 'productSendOut_out' function that I have written in DpDummy.cpp. 
+   - I think this is the thing that actually kicks off everything, but we need to put the U32 into a buffer and send out the buffer, I just don't remember how to do that and need to figure that out, **that's the biggest thing to do right now.**

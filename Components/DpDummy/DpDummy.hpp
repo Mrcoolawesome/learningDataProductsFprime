@@ -45,6 +45,8 @@ class DpDummy final : public DpDummyComponentBase {
     void dpRecv_C1_handler(DpContainer& container,  //!< The container
                            Fw::Success::T status    //!< The container status
                            ) override;
+
+    U32 theSilly = 67;
 };
 
 }  // namespace Components

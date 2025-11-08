@@ -129,9 +129,14 @@ module Test {
     }
 
     connections Test {
+      # this is all done based on the photo of the topology diagram at bullet point 6.1 in https://fprime.jpl.nasa.gov/latest/Svc/DpWriter/docs/sdd/#6-example-uses
+      dpDummy.productRequestOut -> DataProducts.dpMgr.productRequestIn
+      DataProducts.dpMgr.productResponseOut -> dpDummy.productRecvIn 
 
+      # Don't need to do these connections bc they're already done ig
+      DataProducts.dpMgr.productSendOut -> DataProducts.dpWriter.bufferSendIn
+      # DataProducts.dpWriter.deallocBufferSendOut -> DataProducts.dpBufferManager.bufferSendIn
     }
 
-  }
-
+}
 }

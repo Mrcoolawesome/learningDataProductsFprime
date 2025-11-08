@@ -17,7 +17,7 @@ module Components {
         product send port productSendOut
 
         @ A record containing variable-size U32 data
-        product record FixedSizeDataRecord: U32 id 0x00
+        product record NumberDataRecord: U32 id 0x00
         @ container for the one record we have
         product container C1
 
