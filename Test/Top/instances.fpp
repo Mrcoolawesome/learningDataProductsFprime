@@ -69,4 +69,7 @@ module Test {
   instance timer: Svc.LinuxTimer base id 0x10013000
   instance comDriver: Drv.TcpClient base id 0x10014000
 
+  # This is the buffer manager instance for our stuff
+  instance bufferManager: Svc.BufferManager base id 0x10006000 
+
 }

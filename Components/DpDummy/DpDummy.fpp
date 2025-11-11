@@ -21,6 +21,19 @@ module Components {
         @ container for the one record we have
         product container C1
 
+        # Buffer ports
+        @ Allocation port for a buffer
+        output port allocate: Fw.BufferGet
+
+        @ Deallocation port for buffers
+        output port deallocate: Fw.BufferSend
+
+        ## EVENTS
+        @ Allocation failed event
+        event MemoryAllocationFailed() \
+            severity warning low \
+            format "EPS Failed to allocate memory"
+
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####
         ##############################################################################

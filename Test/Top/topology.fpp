@@ -34,6 +34,7 @@ module Test {
     instance cmdSeq
 
     instance dpDummy
+    instance bufferManager
 
   # ----------------------------------------------------------------------
   # Pattern graph specifiers
@@ -136,6 +137,10 @@ module Test {
       # Don't need to do these connections bc they're already done ig
       DataProducts.dpMgr.productSendOut -> DataProducts.dpWriter.bufferSendIn
       # DataProducts.dpWriter.deallocBufferSendOut -> DataProducts.dpBufferManager.bufferSendIn
+
+      # connect the buffer things
+      dpDummy.allocate -> bufferManager.bufferGetCallee
+      dpDummy.deallocate -> bufferManager.bufferSendIn
     }
 
 }

@@ -39,3 +39,8 @@ What I learned today:
  - This isn't doing anything rn because things aren't linked properly ig.
  - I got the requesting the data product container thing done I think, but now I actually need to send the data product using the 'productSendOut_out' function that I have written in DpDummy.cpp. 
    - I think this is the thing that actually kicks off everything, but we need to put the U32 into a buffer and send out the buffer, I just don't remember how to do that and need to figure that out, **that's the biggest thing to do right now.**
+
+
+What I learned today (11/10):
+ - I tried to get buffers to work again so that I can send the data product using the data in the buffer but it's not working because it doesn't like my buffers when I set them up for some reason. 
+ - I'm hoping that Boston fixes this for me.
