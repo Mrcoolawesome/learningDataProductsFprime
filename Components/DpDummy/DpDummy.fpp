@@ -2,6 +2,11 @@ module Components {
     @ Component for F Prime FSW framework.
     active component DpDummy {
 
+        enum DpReqType {
+            IMMEDIATE
+            ASYNC
+        }
+
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
         @ async command
@@ -29,10 +34,45 @@ module Components {
         output port deallocate: Fw.BufferSend
 
         ## EVENTS
-        @ Allocation failed event
-        event MemoryAllocationFailed() \
+        @ DP started event
+        event DpStarted(records: U32) \
+            severity activity low \
+            id 1 \
+            format "Writing {} DP records"
+
+        @ DP complete event
+        event DpComplete(records: U32) \
+            severity activity low \
+            id 2 \
+            format "Finished writing {} DP records"
+
+        event DpRecordFull(records: U32, bytes: U32) \
             severity warning low \
-            format "EPS Failed to allocate memory"
+            id 3 \
+            format "DP container full with {} records and {} bytes. Closing DP."
+
+        event DpMemRequested($size: FwSizeType) \
+            severity activity low \
+            id 4 \
+            format "Requesting {} bytes for DP"
+
+        event DpMemReceived($size: FwSizeType) \
+            severity activity low \
+            id 5 \
+            format "Received {} bytes for DP"
+
+        event DpMemoryFail \
+            severity warning high \
+            id 6 \
+            format "Failed to acquire a DP buffer"
+
+        event DpsNotConnected \
+            severity warning high \
+            id 7 \
+            format "DP Ports not connected!"
+
+        @ Command for generating a DP
+        sync command Dp(reqType: DpReqType, $priority: U32)
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####

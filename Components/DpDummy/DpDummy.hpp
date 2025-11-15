@@ -36,6 +36,14 @@ class DpDummy final : public DpDummyComponentBase {
                               U32 cmdSeq,           //!< The command sequence number
                               U32 silly_data) override;
 
+    //! Handler implementation for command Dp
+    //!
+    //! Command for generating a DP
+    void Dp_cmdHandler(FwOpcodeType opCode,  //!< The opcode
+                       U32 cmdSeq,           //!< The command sequence number
+                       DpDummy_DpReqType reqType,
+                       U32 priority) override;
+
   private:
     // ----------------------------------------------------------------------
     // Handler implementations for data products
@@ -46,7 +54,26 @@ class DpDummy final : public DpDummyComponentBase {
                            Fw::Success::T status    //!< The container status
                            ) override;
 
-    U32 theSilly = 67;
+  private:
+  // ----------------------------------------------------------------------
+  // Handler implementations for typed input ports
+  // ----------------------------------------------------------------------
+
+  //! Handler implementation for run
+  //!
+  //! Input port for running on rate group
+  void run_handler(FwIndexType portNum,  //!< The port number
+                    U32 context           //!< The call order
+                    );
+
+  // DP cleanup helper
+  void cleanupAndSendDp();
+
+  U32 theSilly = 67;
+  DpContainer dpContainer;
+  bool dpInProgress;
+  U32 dpPriority;
+  U32 numRecords;
 };
 
 }  // namespace Components
