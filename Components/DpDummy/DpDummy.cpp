@@ -14,10 +14,6 @@ namespace Components {
 // Component construction and destruction
 // ----------------------------------------------------------------------
 
-void DpDummy ::run_handler(FwIndexType portNum, U32 context) {
-    // TODO
-}
-
 DpDummy ::DpDummy(const char* const compName) : DpDummyComponentBase(compName) {
     // Fw::FileNameString directories[1] = ["bruh.txt"];
     // FwSizeType numDirs = 1;
@@ -109,6 +105,17 @@ void DpDummy ::dpRecv_C1_handler(DpContainer& container, Fw::Success::T status) 
         // cleanup
         this->dpInProgress = false;
         this->numRecords = 0;
+    }
+}
+
+void DpDummy ::run_handler(FwIndexType portNum, U32 context) {
+    if (this->dpInProgress) {
+        // serialize records
+        this->dpContainer.serializeRecord_NumberDataRecord(this->theSilly);
+
+        // do the cleanup aka send out the container and yeah
+        this->log_ACTIVITY_LO_DpComplete(this->numRecords);
+        this->cleanupAndSendDp();
     }
 }
 

@@ -24,7 +24,11 @@ module Components {
         @ A record containing variable-size U32 data
         product record NumberDataRecord: U32 id 0x00
         @ container for the one record we have
-        product container C1
+        product container C1 id 0 default priority 10
+
+        # you NEED this to get the dpGet_C1 function, which wasn't obvious to me for some reason but yeah it's a thing
+        @ Data product get port
+        product get port productGetOut 
 
         # Buffer ports
         @ Allocation port for a buffer
@@ -32,6 +36,9 @@ module Components {
 
         @ Deallocation port for buffers
         output port deallocate: Fw.BufferSend
+
+        @ Run port 
+        async input port run: Svc.Sched
 
         ## EVENTS
         @ DP started event

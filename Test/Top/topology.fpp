@@ -113,7 +113,7 @@ module Test {
       # Rate group 2
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup2] -> rateGroup2.CycleIn
       rateGroup2.RateGroupMemberOut[0] -> cmdSeq.schedIn
-      rateGroup2.RateGroupMemberOut[1] -> dpMgr.run
+      rateGroup2.RateGroupMemberOut[1] -> dpDummy.run
 
       # Rate group 3
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup3] -> rateGroup3.CycleIn
@@ -135,13 +135,14 @@ module Test {
       dpDummy.productRequestOut -> DataProducts.dpMgr.productRequestIn
       DataProducts.dpMgr.productResponseOut -> dpDummy.productRecvIn 
 
-      # Don't need to do these connections bc they're already done ig
-      DataProducts.dpMgr.productSendOut -> DataProducts.dpWriter.bufferSendIn
-      # DataProducts.dpWriter.deallocBufferSendOut -> DataProducts.dpBufferManager.bufferSendIn
+      dpDummy.productSendOut -> DataProducts.dpMgr.productSendIn
 
       # connect the buffer things
       dpDummy.allocate -> bufferManager.bufferGetCallee
       dpDummy.deallocate -> bufferManager.bufferSendIn
+
+      # Synchronous request
+      dpDummy.productGetOut -> DataProducts.dpMgr.productGetIn
     }
 
 }

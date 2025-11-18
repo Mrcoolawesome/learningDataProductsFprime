@@ -55,16 +55,14 @@ class DpDummy final : public DpDummyComponentBase {
                            ) override;
 
   private:
-  // ----------------------------------------------------------------------
-  // Handler implementations for typed input ports
-  // ----------------------------------------------------------------------
+    // ----------------------------------------------------------------------
+    // Handler implementations for typed input ports
+    // ----------------------------------------------------------------------
 
-  //! Handler implementation for run
-  //!
-  //! Input port for running on rate group
-  void run_handler(FwIndexType portNum,  //!< The port number
-                    U32 context           //!< The call order
-                    );
+    //! Handler implementation for run
+    void run_handler(FwIndexType portNum,  //!< The port number
+                     U32 context           //!< The call order
+                     ) override;
 
   // DP cleanup helper
   void cleanupAndSendDp();
