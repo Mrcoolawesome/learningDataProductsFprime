@@ -44,3 +44,9 @@ What I learned today:
 What I learned today (11/10):
  - I tried to get buffers to work again so that I can send the data product using the data in the buffer but it's not working because it doesn't like my buffers when I set them up for some reason. 
  - I'm hoping that Boston fixes this for me.
+
+ What I learned today (1/17):
+ - Data products processing isn't like a thing that exists yet unfortunetly.
+ - To implement our own thing just to read via the gds we would need to read in the `Fw/Dp` file and look at how containers are actually made and how to read them from the downlinked fdp file.
+ - Also learned that in order to transmit the data product, you need to put in the number into the dummy data command, then run the` DummyData.Dp` command, then make the data product catelog via 'Build_Catalog` command, then downlink it via the `XMIT` command.
+   
