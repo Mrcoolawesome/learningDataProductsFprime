@@ -49,4 +49,13 @@ What I learned today (11/10):
  - Data products processing isn't like a thing that exists yet unfortunetly.
  - To implement our own thing just to read via the gds we would need to read in the `Fw/Dp` file and look at how containers are actually made and how to read them from the downlinked fdp file.
  - Also learned that in order to transmit the data product, you need to put in the number into the dummy data command, then run the` DummyData.Dp` command, then make the data product catelog via 'Build_Catalog` command, then downlink it via the `XMIT` command.
+
+ ^this is important because this is how you properly do things in the proper order
+
+ What I learned today (2/9/2026):
+  - I got it working. The problem was that I wasn't allocating enough space with the line where I define dpSize. You need to use sizeof to get the size which I just wasn't doing for some reason. I also set the test data to be a string instead of a number. I also used the new dp parser that they told me about. You can download it and use it like this:
+  ```
+  pip install -U fprime-gds==4.1.1a4
+   fprime-dp decode --bin-file <path/to/file.fdp> --dictionary <path/to/dict.json>
+  ```
    
