@@ -10,7 +10,7 @@ module Components {
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
         @ async command
-        async command SEND_DATA(silly_data: U32)
+        async command SEND_DATA(silly_data: string)
 
         @ Data product stuff
         product request port productRequestOut
@@ -22,7 +22,7 @@ module Components {
         product send port productSendOut
 
         @ A record containing variable-size U32 data
-        product record NumberDataRecord: U32 id 0x00
+        product record StringRecord: string id 0
         @ container for the one record we have
         product container C1 id 0 default priority 10
 

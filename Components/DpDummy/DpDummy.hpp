@@ -34,7 +34,7 @@ class DpDummy final : public DpDummyComponentBase {
     //! async command
     void SEND_DATA_cmdHandler(FwOpcodeType opCode,  //!< The opcode
                               U32 cmdSeq,           //!< The command sequence number
-                              U32 silly_data) override;
+                              const Fw::CmdStringArg& silly_data) override;
 
     //! Handler implementation for command Dp
     //!
@@ -67,7 +67,7 @@ class DpDummy final : public DpDummyComponentBase {
   // DP cleanup helper
   void cleanupAndSendDp();
 
-  U32 theSilly = 67;
+  Fw::String theSilly = "gaming";
   DpContainer dpContainer;
   bool dpInProgress;
   U32 dpPriority;

@@ -53,7 +53,7 @@ void DpDummy ::Dp_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, DpDummy_DpReqType 
 
     this->numRecords = 1; // 1 records in current demo
     this->dpPriority = static_cast<FwDpPriorityType>(priority);
-    this->log_ACTIVITY_LO_DpMemRequested(dpSize);
+    this->log_ACTIVITY_LO_DpMemRequested(Fw::String::SERIALIZED_SIZE);
 
     if(reqType == DpDummy_DpReqType::IMMEDIATE) {
         Fw::Success stat = this->dpGet_C1(dpSize, this->dpContainer); // IDK WHY THIS IS NOT WORKING!!!
@@ -81,7 +81,7 @@ void DpDummy ::Dp_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, DpDummy_DpReqType 
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
 }
 
-void DpDummy ::SEND_DATA_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, U32 silly_data) {
+void DpDummy ::SEND_DATA_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, const Fw::CmdStringArg& silly_data) {
     // Update the global variable 'theSilly' to be what the user inputed
     this->theSilly = silly_data;
 
@@ -111,7 +111,7 @@ void DpDummy ::dpRecv_C1_handler(DpContainer& container, Fw::Success::T status) 
 void DpDummy ::run_handler(FwIndexType portNum, U32 context) {
     if (this->dpInProgress) {
         // serialize records
-        this->dpContainer.serializeRecord_NumberDataRecord(this->theSilly);
+        this->dpContainer.serializeRecord_StringRecord(this->theSilly);
 
         // do the cleanup aka send out the container and yeah
         this->log_ACTIVITY_LO_DpComplete(this->numRecords);
